@@ -41,4 +41,30 @@ queryPost = form => {
     } catch (ex) {
         console.log(ex)
     }
+    return false;
+}
+
+deleteQuery = form => {
+        try {
+            $.ajax({
+                type: 'POST',
+                url: form.action,
+                data: new FormData(form),
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    $('#view-all').html(res.html);
+                    console.log(res);
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+            //to prevent default form submit event
+            return false;
+        } catch (ex) {
+            console.log(ex)
+        }
+
+        return false;
 }

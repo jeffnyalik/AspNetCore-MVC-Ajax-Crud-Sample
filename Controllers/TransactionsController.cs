@@ -55,7 +55,8 @@ namespace BankTransactions.Controllers
             var transaction = await _context.Transactions.FindAsync(id);
             _context.Transactions.Remove(transaction);
             _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            return Json(new {html = Helper.RenderRazorViewToString(this, "_ViewAll", _context.Transactions.ToList()) });
+            // return RedirectToAction(nameof(Index));
         }
 
     }

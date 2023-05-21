@@ -23,15 +23,13 @@
                 <td>@Html.DisplayFor(model => item.Amount)</td>
                 <td>@Html.DisplayFor(model => item.CreatedAt)</td>
                 <td>
-                    <form asp-action="Delete" asp-route-id="@item.TransactionId">
-                        <a asp-action="AddorEdit" asp-route-id="@item.TransactionId">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <butto class="btn-group btn-group-sm">
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you wan to delete')">
-                                <i class="fa fa-trash-alt"></i>
-                            </button>
-                        </butto>
+                    <a class="btn btn-info rounded-0"
+                       onclick="showpopup('@Url.Action("AddorEdit","Transactions",new{id = item.TransactionId}, Context.Request.Scheme)', 'Update Transaction')">
+                        <i class="fa fa-pencil"></i>
+
+                    </a>
+                    <form asp-action="Delete" asp-route-id="@item.TransactionId" onsubmit="return deleteQuery(this);">
+                        <input type="submit" value="remove" class="btn btn-sm btn-danger" />
                     </form>
                 </td>
             </tr>
