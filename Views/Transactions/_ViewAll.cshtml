@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BankTransactions.Models.Transaction>
+@{
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.AccountNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.BeneficiaryName)</th>
+            <th>@Html.DisplayNameFor(model =>model.BankName)</th>
+            <th>@Html.DisplayNameFor(model =>model.SwiftCode)</th>
+            <th>@Html.DisplayNameFor(model =>model.Amount)</th>
+            <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => item.AccountNumber)</td>
+                <td>@Html.DisplayFor(model => item.BeneficiaryName)</td>
+                <td>@Html.DisplayFor(model => item.BankName)</td>
+                <td>@Html.DisplayFor(model => item.SwiftCode)</td>
+                <td>@Html.DisplayFor(model => item.Amount)</td>
+                <td>@Html.DisplayFor(model => item.CreatedAt)</td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@item.TransactionId">
+                        <a asp-action="AddorEdit" asp-route-id="@item.TransactionId">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <butto class="btn-group btn-group-sm">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you wan to delete')">
+                                <i class="fa fa-trash-alt"></i>
+                            </button>
+                        </butto>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

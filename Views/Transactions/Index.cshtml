@@ -1,0 +1,16 @@
+﻿@model IEnumerable<BankTransactions.Models.Transaction>
+@{
+    ViewData["title"] = "Transactions";
+}
+
+<div>
+    <p class="text-center">Transaction Home Page details</p>
+    <a class="btn btn-info rounded-0" 
+        onclick="showpopup('@Url.Action("AddorEdit","Transactions", null, Context.Request.Scheme)', 'New Bank Transaction')">
+        <i class="fa fa-plus"></i> 
+        Create New
+    </a>
+  <div id="view-all">
+      @await Html.PartialAsync("_ViewAll")
+  </div>
+</div>

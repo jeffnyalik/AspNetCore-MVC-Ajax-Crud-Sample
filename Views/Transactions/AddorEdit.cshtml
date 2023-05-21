@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model BankTransactions.Models.Transaction;
+@{
+    ViewData["title"] = "Add Or Edit";
+    Layout = null;
+}
+
+
+<div>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form asp-action="AddorEdit" asp-route-id="@Model.TransactionId" autocomplete="off" onsubmit="return queryPost(this);">
+                <div asp-validation-summary="ModelOnly" action="text-danger"></div>
+                <input type="hidden" asp-for="TransactionId"/>
+                <div class="form-group">
+                    <label asp-for="AccountNumber" class="control-label"></label>
+                    <input asp-for="AccountNumber" class="form-control"/>
+                    <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                </div>
+                 <div class="form-group">
+                    <label asp-for="BeneficiaryName" class="control-label"></label>
+                    <input asp-for="BeneficiaryName" class="form-control" />
+                    <span asp-validation-for="BeneficiaryName" class="text-danger"></span>
+                </div>
+                 <div class="form-group">
+                    <label asp-for="BankName" class="control-label"></label>
+                    <input asp-for="BankName" class="form-control"/>
+                    <span asp-validation-for="BankName" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="SwiftCode" class="control-label"></label>
+                            <input asp-for="SwiftCode" class="form-control" />
+                            <span asp-validation-for="SwiftCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Amount" class="control-label"></label>
+                            <input asp-for="Amount" class="form-control" />
+                            <span asp-validation-for="Amount" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-primary w-100" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                          <input type="submit" asp-controller="transactions" asp-action="Index" value="view All" class="btn btn-secondary w-100" />
+                        </div>
+                    </div> 
+                 
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
